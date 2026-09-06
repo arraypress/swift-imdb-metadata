@@ -3,6 +3,8 @@
 //  IMDbMetadata
 //
 
+//
+
 import Foundation
 
 /// A film, show or game.
@@ -10,7 +12,9 @@ public struct Title: Sendable, Codable, Equatable, Identifiable {
 
     /// The `tt…` id — the one Plex, Radarr, Trakt and Letterboxd all key on.
     public let id: String
+    /// The primary title, as IMDb spells it.
     public let title: String
+    /// Film, series, episode, short.
     public let kind: TitleKind
     /// First year. Nil for something announced but undated.
     public let year: Int?
@@ -36,28 +40,6 @@ public struct Title: Sendable, Codable, Equatable, Identifiable {
         self.endYear = endYear
         self.stars = stars
         self.posterURL = posterURL
-        self.rank = rank
-    }
-}
-
-/// A person.
-public struct Person: Sendable, Codable, Equatable, Identifiable {
-
-    /// The `nm…` id.
-    public let id: String
-    public let name: String
-    /// What IMDb leads with: "Actor, A Complete Unknown (2024)".
-    public let knownFor: String?
-    public let photoURL: URL?
-    public let rank: Int?
-
-    public var url: URL { URL(string: "https://www.imdb.com/name/\(id)/")! }
-
-    public init(id: String, name: String, knownFor: String?, photoURL: URL?, rank: Int?) {
-        self.id = id
-        self.name = name
-        self.knownFor = knownFor
-        self.photoURL = photoURL
         self.rank = rank
     }
 }

@@ -5,6 +5,7 @@
 
 import Foundation
 
+/// Why a lookup failed.
 public enum IMDbError: Error, LocalizedError, Equatable {
 
     /// Nothing matched.
@@ -20,6 +21,7 @@ public enum IMDbError: Error, LocalizedError, Equatable {
     /// Not a `tt…` id.
     case notATitleID(String)
 
+    /// A one-line reason, for a CLI or a log.
     public var errorDescription: String? {
         switch self {
         case let .noResults(query): return "nothing on IMDb for \(query)"
